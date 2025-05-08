@@ -6,6 +6,7 @@ import smtplib
 from email.mime.text import MIMEText
 import os
 from dotenv import load_dotenv
+from selenium.webdriver.chrome.options import Options
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -29,7 +30,12 @@ def send_email():
     except Exception as e:
         print("Failed to send email:", e)
 
-driver = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+driver = driver = webdriver.Chrome(options=chrome_options)
 
 driver.get("https://wlu-ls.sona-systems.com/default.aspx")
 
