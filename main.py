@@ -52,6 +52,7 @@ driver.get("https://wlu-ls.sona-systems.com/all_exp_participant.aspx")
 try:
     time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 5*3600))
     page_source = driver.page_source
+    print(page_source)
     if "No studies are available at this time." in page_source:
         print(f"{time} - No studies are available at this time.")
     else:
