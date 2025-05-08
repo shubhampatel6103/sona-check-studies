@@ -50,13 +50,20 @@ driver.get("https://wlu-ls.sona-systems.com/all_exp_participant.aspx")
 
 # Find the div and check its text
 try:
-    time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 5*3600))
+    # Navigate to the studies page
+    driver.get("https://wlu-ls.sona-systems.com/all_exp_participant.aspx")
+    
+    # Get the current time (Eastern Time)
+    current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 5*3600))
+    
+    # Get the page source after navigation
     page_source = driver.page_source
     print(page_source)
+    
     if "No studies are available at this time." in page_source:
-        print(f"{time} - No studies are available at this time.")
+        print(f"{current_time} - No studies are available at this time.")
     else:
-        print(f"{time} - Studies are available or the message is different.")
+        print(f"{current_time} - Studies are available or the message is different.")
         send_email()
 except Exception as e:
     print("An error occurred while reading the page:", e)
