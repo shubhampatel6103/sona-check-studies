@@ -10,9 +10,10 @@ from selenium.webdriver.chrome.options import Options
 
 load_dotenv()  # Load environment variables from .env file
 
-def send_email():
+receivers = ["shubhampatelspam@gmail.com", "rushildeep1@gmail.com"]
+
+def send_email(receiver):
     sender = "shubhampatelspam@gmail.com"  # Replace with your email
-    receiver = "shubhampatelspam@gmail.com"
     password = os.getenv("EMAIL_PASSWORD")   # Use an app password if using Gmail
     subject = "Sona Studies Update"
     body = "There are studies available or the message has changed."
@@ -58,13 +59,13 @@ try:
     
     # Get the page source after navigation
     page_source = driver.page_source
-    print(page_source)
     
     if "No studies are available at this time." in page_source:
         print(f"{current_time} - No studies are available at this time.")
     else:
         print(f"{current_time} - Studies are available or the message is different.")
-        send_email()
+        for receiver in receivers:
+            send_email(receiver)
 except Exception as e:
     print("An error occurred while reading the page:", e)
 
