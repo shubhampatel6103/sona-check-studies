@@ -12,10 +12,6 @@ load_dotenv()  # Load environment variables from .env file
 
 receivers = [
     "shubhampatelspam@gmail.com", 
-    "rushildeep1@gmail.com", 
-    "sohamsant@gmail.com", "spence.pilkey2@gmail.com", 
-    "hudson.l.vance@gmail.com", 
-    "ameya.soman12@gmail.com"
 ]
 
 def send_email(receiver):
